@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CountDown Timer For New Year</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            background-image: url('pattern.jpg');
+/* Ensure correct path */
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: aliceblue;
+        }
+        .container { /* Corrected spelling */
+            height: 70vh;
+            width: 70vw;
+            background-color: rgba(0, 0, 0, 0.7); /* Slightly transparent background */
+            border-radius: 10px;
+            box-shadow: -2px -2px 5px 11px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 10px;
+        }
+        .timercountainer {
+            display: flex;
+            margin: 20px;
+        }
+        .time h3 {
+            font-size: 55px;
+        }
+        .time {
+            margin: 0 20px;
+            font-size: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container"> <!-- Corrected spelling -->
+        <h1>New Year's CountDown Timer</h1>
+        <div class="timercountainer">
+            <div class="time">
+                <h3 id="day">00</h3>
+                <p>Days</p>  
+            </div>
+            <div class="time">
+                <h3 id="Hours">00</h3> <!-- Corrected 'Hours' ID -->
+                <p>Hours</p>  
+            </div>
+            <div class="time">
+                <h3 id="Minutes">00</h3> <!-- Corrected 'Minutes' ID -->
+                <p>Minutes</p>  
+            </div>
+            <div class="time">
+                <h3 id="Seconds">00</h3> <!-- Corrected 'Seconds' ID -->
+                <p>Seconds</p>  
+            </div>
+        </div>
+    </div>
+    <script>
+
+        const day = document.getElementById('day');
+        const hours = document.getElementById('Hours');
+        const minutes = document.getElementById('Minutes');
+        const seconds = document.getElementById('Seconds');
+
+        const currentYear = new Date().getFullYear();
+        const newYearTime = new Date(`January 1 ${currentYear + 1} 00:00:00`);
+
+        function updateTime() {
+            const currentTime = new Date();
+            const timeLeft = newYearTime - currentTime;
+
+            console.log(timeLeft);
+
+            const d = Math.floor(timeLeft / 1000 / 60 / 60 / 24);
+            const h = Math.floor(timeLeft / 1000 / 60 / 60) % 24;
+            const m = Math.floor(timeLeft / 1000 / 60) % 60;
+            const s = Math.floor(timeLeft / 1000) % 60;
+
+            day.innerHTML = d;
+            hours.innerHTML = h < 10 ? "0" + h : h;
+            minutes.innerHTML = m < 10 ? "0" + m : m;
+            seconds.innerHTML = s < 10 ? "0" + s : s;
+        }
+
+        setInterval(updateTime, 1000);
+    </script>
+
+</body>
+</html>
